@@ -10,13 +10,23 @@
 #include "TransportationFootprint.h"
 #include "WasteFootprint.h"
 
+using namespace std;
+
 class CarbonFootprintCalculator {
 private:
+    //Constants
     static const int MAX_ACTIVITIES = 5;
-    CarbonFootprint* activities[MAX_ACTIVITIES];
+    CarbonFootprint** activities = new CarbonFootprint*[MAX_ACTIVITIES];
     int numActivities;
 
+    int energyFootprint;
+    int materialsFootprint;
+    int provisionsFootprint;
+    int transportationFootprint;
+    int wasteFootprint;
+
 public:
+    int totalCarbonFootprint;
     CarbonFootprintCalculator() : numActivities(0) {}
 
     void addActivity(CarbonFootprint* activity) {
