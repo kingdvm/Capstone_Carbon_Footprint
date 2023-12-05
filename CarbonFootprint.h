@@ -7,11 +7,13 @@ public:
 
     }
     virtual void calculateCarbonFootprint() = 0;
+    virtual void displayCarbonFootprint() = 0;
+
     int getFootprint(){
         return this->footprint;
     }
 
-private:
+protected:
     int footprint;
 
 };

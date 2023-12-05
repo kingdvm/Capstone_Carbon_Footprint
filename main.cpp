@@ -12,37 +12,45 @@
 
 using namespace std;
 
+//Main calculator class class
 class CarbonFootprintCalculator {
 private:
-    //Constants
-    static const int MAX_ACTIVITIES = 5;
-    CarbonFootprint** activities = new CarbonFootprint*[MAX_ACTIVITIES];
-    int numActivities;
+    static const int MAX_ACTIVITIES = 5; //Constant number of carbon footprint areas, can be changed if expanded in the future
 
+    CarbonFootprint** activities; //Points to an array of CarbonFootprints, which is a the parent class of each type of carbon footprint 
+
+    //Carbon footrprint scores
     int energyFootprint;
     int materialsFootprint;
     int provisionsFootprint;
     int transportationFootprint;
     int wasteFootprint;
+    int totalCarbonFootprint;
+
 
 public:
-    int totalCarbonFootprint;
-    CarbonFootprintCalculator() : numActivities(0) {}
+    //Constructor initialises each of the carbon footprint areas in activities
+    CarbonFootprintCalculator(){
+       activities = new CarbonFootprint*[MAX_ACTIVITIES];
+       activities[0] = new MaterialsFootprint();
+       activities[1] = new TransportationFootprint();
+       activities[2] = new ProvisionsFootprint();
+       activities[3] = new EnergyFootprint();
+       activities[4] = new WasteFootprint();
+    }
 
-    void addActivity(CarbonFootprint* activity) {
-        if (numActivities < MAX_ACTIVITIES) {
-            activities[numActivities++] = activity;
-        } else {
-            std::cerr << "Cannot add more activities. Maximum limit reached." << std::endl;
+    // Calculate total carbon footprint
+    void calculateTotalCarbonFootprint() {
+        for (int i = 0; i < MAX_ACTIVITIES; i++) {
+            activities[i]->calculateCarbonFootprint();
         }
     }
 
-    void calculateTotalCarbonFootprint() {
-        for (int i = 0; i < numActivities; ++i) {
-            activities[i]->calculateCarbonFootprint();
+    // Display results
+    void displayCarbonFooprint(){
+        for (int i = 0; i < MAX_ACTIVITIES; i++) {
+            activities[i]->displayCarbonFootprint();
         }
-        // Calculate total carbon footprint and display results
-        // Will need to finalize all the different conversion formulas for each class
     }
 };
 
@@ -51,16 +59,8 @@ int main() {
 
     CarbonFootprintCalculator calculator;
 
-    // User inputs (simplified for demonstration purposes)
-    Energy energyActivity;
-    Transportation transportationActivity;
-
-    calculator.addActivity(&energyActivity);
-    calculator.addActivity(&transportationActivity);
-
-    // Add other activities based on user input
-
     calculator.calculateTotalCarbonFootprint();
+    calculator.displayCarbonFooprint();
 
     return 0;
 }
