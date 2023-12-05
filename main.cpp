@@ -32,6 +32,7 @@ public:
     //Constructor initialises each of the carbon footprint areas in activities
     CarbonFootprintCalculator(){
        activities = new CarbonFootprint*[MAX_ACTIVITIES];
+
        activities[0] = new MaterialsFootprint();
        activities[1] = new TransportationFootprint();
        activities[2] = new ProvisionsFootprint();
@@ -58,7 +59,7 @@ int main() {
     // Example usage of the Carbon Footprint Calculator
 
     CarbonFootprintCalculator calculator;
-
+    
     calculator.calculateTotalCarbonFootprint();
     calculator.displayCarbonFooprint();
 
