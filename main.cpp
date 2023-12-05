@@ -3,38 +3,23 @@
 //Calculates Carbon Footprint
 
 #include <iostream>
-
-class Activity {
-public:
-    virtual void calculateCarbonFootprint() = 0;
-};
-
-class Energy : public Activity {
-public:
-    void calculateCarbonFootprint() override {
-        // Find a formula that takes energy input (in watts probably) and quantifies/rates that energy usage
-    }
-};
-
-class Transportation : public Activity {
-public:
-    void calculateCarbonFootprint() override {
-        // Implementation for calculating carbon footprint from transportation-related data
-    }
-};
-
-// Other activity classes like Waste, Diet, and Consumption can be similarly implemented
+#include "CarbonFootprint.h"
+#include "EnergyFootprint.h"
+#include "MaterialsFootprint.h"
+#include "ProvisionsFootprint.h"
+#include "TransportationFootprint.h"
+#include "WasteFootprint.h"
 
 class CarbonFootprintCalculator {
 private:
     static const int MAX_ACTIVITIES = 5;
-    Activity* activities[MAX_ACTIVITIES];
+    CarbonFootprint* activities[MAX_ACTIVITIES];
     int numActivities;
 
 public:
     CarbonFootprintCalculator() : numActivities(0) {}
 
-    void addActivity(Activity* activity) {
+    void addActivity(CarbonFootprint* activity) {
         if (numActivities < MAX_ACTIVITIES) {
             activities[numActivities++] = activity;
         } else {
