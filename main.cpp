@@ -1,3 +1,7 @@
+//Author: Celestlin Hutagalung
+//Carbon Footprint Calculator
+//Calculates Carbon Footprint
+
 #include <iostream>
 
 class Activity {
