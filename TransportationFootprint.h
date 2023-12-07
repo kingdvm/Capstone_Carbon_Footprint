@@ -1,29 +1,28 @@
+// TransportationFootprint.h
+
 #ifndef TRANSPORTATIONFOOTPRINT_H
 #define TRANSPORTATIONFOOTPRINT_H
 
-#include <iostream>
 #include "CarbonFootprint.h"
-
-using namespace std;
 
 class TransportationFootprint : public CarbonFootprint {
 public:
-    TransportationFootprint(){
-
-    }
+    TransportationFootprint() {}
 
     void calculateCarbonFootprint() override {
-        // Implementation for calculating carbon footprint from transportation-related data
-        int electricityFootprint;
-        cout << "Enter energy footprint: ";
-        cin >> electricityFootprint;
-        this->footprint = electricityFootprint;
+        using namespace std;
+        int distanceTraveled;
+        cout << "Enter distance traveled (in km): ";
+        cin >> distanceTraveled;
+        
+        // Assuming some simple linear relation between distance and footprint
+        this->footprint = distanceTraveled / 10;  //replace with your actual formula
     }
 
-    void displayCarbonFootprint() override{
-        cout << "Your footprint is " << footprint << endl; 
+    void displayCarbonFootprint() const override {
+        using namespace std;
+        cout << "Your transportation footprint is " << footprint << " units" << endl;
     }
 };
-
 
 #endif

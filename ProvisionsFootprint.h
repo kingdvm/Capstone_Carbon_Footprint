@@ -1,28 +1,29 @@
+// ProvisionsFootprint.h
+
 #ifndef PROVISIONSFOOTPRINT_H
 #define PROVISIONSFOOTPRINT_H
 
-#include <iostream>
 #include "CarbonFootprint.h"
-
-using namespace std;
 
 class ProvisionsFootprint : public CarbonFootprint {
 public:
-    ProvisionsFootprint(){
-        
-    }
+    ProvisionsFootprint() {}
 
     void calculateCarbonFootprint() override {
-        // Find a formula 
-        int electricityFootprint;
-        cout << "Enter energy footprint: ";
-        cin >> electricityFootprint;
-        this->footprint = electricityFootprint;
+        using namespace std;
+        int foodConsumption, produceConsumption;
+        cout << "Enter food consumption (in kg): ";
+        cin >> foodConsumption;
 
+        cout << "Enter produce consumption (in kg): ";
+        cin >> produceConsumption;
+
+        this->footprint = foodConsumption + produceConsumption;
     }
 
-    void displayCarbonFootprint() override{
-        cout << "Your footprint is " << footprint << endl; 
+    void displayCarbonFootprint() const override {
+        using namespace std;
+        cout << "Your provisions footprint is " << footprint << " kg" << endl;
     }
 };
 
