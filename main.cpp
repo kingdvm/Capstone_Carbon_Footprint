@@ -1,6 +1,4 @@
-//Author: Celestlin Hutagalung
-//Carbon Footprint Calculator
-//Calculates Carbon Footprint
+// main.cpp
 
 #include <iostream>
 #include "CarbonFootprint.h"
@@ -10,34 +8,20 @@
 #include "TransportationFootprint.h"
 #include "WasteFootprint.h"
 
-using namespace std;
-
-//Main calculator class class
 class CarbonFootprintCalculator {
 private:
-    static const int MAX_ACTIVITIES = 5; //Constant number of carbon footprint areas, can be changed if expanded in the future
-
-    CarbonFootprint** activities; //Points to an array of CarbonFootprints, which is a the parent class of each type of carbon footprint 
-
-    //Carbon footrprint scores
-    int energyFootprint;
-    int materialsFootprint;
-    int provisionsFootprint;
-    int transportationFootprint;
-    int wasteFootprint;
+    static const int MAX_ACTIVITIES = 5;
+    CarbonFootprint* activities[MAX_ACTIVITIES];
     int totalCarbonFootprint;
 
-
 public:
-    //Constructor initialises each of the carbon footprint areas in activities
-    CarbonFootprintCalculator(){
-       activities = new CarbonFootprint*[MAX_ACTIVITIES];
-
-       activities[0] = new MaterialsFootprint();
-       activities[1] = new TransportationFootprint();
-       activities[2] = new ProvisionsFootprint();
-       activities[3] = new EnergyFootprint();
-       activities[4] = new WasteFootprint();
+    CarbonFootprintCalculator() {
+        activities[0] = new MaterialsFootprint();
+        activities[1] = new TransportationFootprint();
+        activities[2] = new ProvisionsFootprint();
+        activities[3] = new EnergyFootprint();
+        activities[4] = new WasteFootprint();
+        totalCarbonFootprint = 0;
     }
     
     //Menu 
@@ -74,10 +58,10 @@ public:
         }
     }
 
-    // Calculate total carbon footprint
     void calculateTotalCarbonFootprint() {
         for (int i = 0; i < MAX_ACTIVITIES; i++) {
             activities[i]->calculateCarbonFootprint();
+            totalCarbonFootprint += activities[i]->getFootprint();
         }
     }
 
@@ -108,17 +92,23 @@ public:
         for (int i = 0; i < MAX_ACTIVITIES; i++) {
             activities[i]->displayCarbonFootprint();
         }
+
+        cout << "\nTotal Carbon Footprint: " << totalCarbonFootprint << " units" << endl;
+        cout << "Overall Rating: " << calculateOverallRating(totalCarbonFootprint) << "/10" << endl;
+    }
+
+private:
+    int calculateOverallRating(int total) const {
+        return total / 10; //replace with your actual formula
     }
 };
 
 int main() {
-    // Example usage of the Carbon Footprint Calculator
-
     CarbonFootprintCalculator calculator;
 
     calculator.displayMenu();
     calculator.calculateTotalCarbonFootprint();
-    calculator.displayCarbonFooprint();
+    calculator.displayCarbonFootprint();
 
     return 0;
 }

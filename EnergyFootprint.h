@@ -1,28 +1,26 @@
+// EnergyFootprint.h
+
 #ifndef ENERGYFOOTPRINT_H
 #define ENERGYFOOTPRINT_H
 
-#include <iostream>
 #include "CarbonFootprint.h"
-
-using namespace std;
 
 class EnergyFootprint : public CarbonFootprint {
 public:
-    EnergyFootprint(){
+    EnergyFootprint() {}
 
-    }
     void calculateCarbonFootprint() override {
-        // Find a formula that takes energy input (in watts probably) and quantifies/rates that energy usage
+        using namespace std;
         int electricityFootprint;
-        cout << "Enter energy footprint: ";
+        cout << "Enter energy footprint (in kWh): ";
         cin >> electricityFootprint;
         this->footprint = electricityFootprint;
     }
 
-    void displayCarbonFootprint() override{
-        cout << "Your footprint is " << footprint << endl; 
+    void displayCarbonFootprint() const override {
+        using namespace std;
+        cout << "Your energy footprint is " << footprint << " kWh" << endl;
     }
-
 };
 
 #endif

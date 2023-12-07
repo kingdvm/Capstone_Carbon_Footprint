@@ -1,28 +1,26 @@
+// WasteFootprint.h
+
 #ifndef WASTEFOOTPRINT_H
 #define WASTEFOOTPRINT_H
 
-#include <iostream>
 #include "CarbonFootprint.h"
-
-using namespace std;
 
 class WasteFootprint : public CarbonFootprint {
 public:
-    WasteFootprint(){
-        
-    }
+    WasteFootprint() {}
+
     void calculateCarbonFootprint() override {
-        // Find a formula 
-        int electricityFootprint;
-        cout << "Enter energy footprint: ";
-        cin >> electricityFootprint;
-        this->footprint = electricityFootprint;
+        using namespace std;
+        int wasteAmount;
+        cout << "Enter waste amount (in kg): ";
+        cin >> wasteAmount;
+        this->footprint = wasteAmount;
     }
 
-    void displayCarbonFootprint() override{
-        cout << "Your footprint is " << footprint << endl; 
+    void displayCarbonFootprint() const override {
+        using namespace std;
+        cout << "Your waste footprint is " << footprint << " kg" << endl;
     }
-
 };
 
 #endif
