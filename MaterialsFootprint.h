@@ -4,22 +4,21 @@
 #define MATERIALSFOOTPRINT_H
 
 #include "CarbonFootprint.h"
+using namespace std;
 
 class MaterialsFootprint : public CarbonFootprint {
 public:
     MaterialsFootprint() {}
 
     void calculateCarbonFootprint() override {
-        using namespace std;
         int clothingArticles;
-        cout << "Enter number of clothing articles purchased: ";
+        cout << "Enter number of clothing articles purchased this month: ";
         cin >> clothingArticles;
         this->footprint = clothingArticles;
     }
 
     void displayCarbonFootprint() const override {
-        using namespace std;
-        cout << "Your materials footprint is " << footprint << " clothing articles" << endl;
+        cout << "Your estimated materials footprint is " << footprint << " clothing articles" << endl;
     }
 };
 

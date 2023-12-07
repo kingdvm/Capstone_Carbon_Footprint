@@ -91,6 +91,8 @@ public:
 
     // Display results
     void displayCarbonFooprint(){
+        cout << endl;
+        
         for (int i = 0; i < MAX_ACTIVITIES; i++) {
             activities[i]->displayCarbonFootprint();
         }
@@ -109,6 +111,6 @@ int main() {
     CarbonFootprintCalculator calculator;
 
     calculator.displayMenu();
-    
+
     return 0;
 }

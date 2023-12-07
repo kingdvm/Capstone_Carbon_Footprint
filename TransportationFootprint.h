@@ -12,7 +12,7 @@ public:
     void calculateCarbonFootprint() override {
         using namespace std;
         int distanceTraveled;
-        cout << "Enter distance traveled (in km): ";
+        cout << "Enter estimated distance traveled this month (in km): ";
         cin >> distanceTraveled;
         
         // Assuming some simple linear relation between distance and footprint
@@ -21,7 +21,7 @@ public:
 
     void displayCarbonFootprint() const override {
         using namespace std;
-        cout << "Your transportation footprint is " << footprint << " units" << endl;
+        cout << "Your estimated transportation footprint is " << footprint << " units" << endl;
     }
 };
 

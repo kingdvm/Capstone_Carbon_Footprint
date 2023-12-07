@@ -4,26 +4,25 @@
 #define PROVISIONSFOOTPRINT_H
 
 #include "CarbonFootprint.h"
+using namespace std;
 
 class ProvisionsFootprint : public CarbonFootprint {
 public:
     ProvisionsFootprint() {}
 
     void calculateCarbonFootprint() override {
-        using namespace std;
         int foodConsumption, produceConsumption;
-        cout << "Enter food consumption (in kg): ";
+        cout << "Enter estimated food consumption this month (in kg): ";
         cin >> foodConsumption;
 
-        cout << "Enter produce consumption (in kg): ";
+        cout << "Enter estimated produce consumption this month (in kg): ";
         cin >> produceConsumption;
 
         this->footprint = foodConsumption + produceConsumption;
     }
 
     void displayCarbonFootprint() const override {
-        using namespace std;
-        cout << "Your provisions footprint is " << footprint << " kg" << endl;
+        cout << "Your estimated provisions footprint is " << footprint << " kg" << endl;
     }
 };
 
