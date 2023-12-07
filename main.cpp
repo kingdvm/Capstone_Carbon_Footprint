@@ -8,6 +8,8 @@
 #include "TransportationFootprint.h"
 #include "WasteFootprint.h"
 
+using namespace std; 
+
 class CarbonFootprintCalculator {
 private:
     static const int MAX_ACTIVITIES = 5;
@@ -107,8 +109,6 @@ int main() {
     CarbonFootprintCalculator calculator;
 
     calculator.displayMenu();
-    calculator.calculateTotalCarbonFootprint();
-    calculator.displayCarbonFootprint();
-
+    
     return 0;
 }
